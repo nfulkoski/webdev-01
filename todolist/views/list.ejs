@@ -1,34 +1,25 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link href="/css/styles.css" rel="stylesheet">
-    <title>Todo list</title>
-  </head>
-  <body>
+<%- include("header") -%>
     <!-- Scriplet tags <% %> allow control flow js code written alongside html -->
     <div class="box" id="heading">
-          <h1><%= today_name %></h1>
+          <h1 style="margin-bottom: 5px;"><%= title %></h1>
+          <h1 style="margin-top: 5px;"><%= today_name %></h1>
     </div>
 
 
     <div class="box">
 
-      <% for(let i = 0; i < newListItem.length; i++) { %>
+      <% for(let i = 0; i < listItems.length; i++) { %>
       <div class="item">
           <input type="checkbox">
           <p>
-          <%= newListItem[i] %>
+          <%= listItems[i] %>
           </p>
       </div>
       <% } %>
       <form class="item" action="/" method="post">
         <input placeholder="New item" type="text" name="input_tsk" autocomplete="off">
-        <button type="submit" name="button">+</button>
+        <button type="submit" name="list" value=<%= title%>>+</button>
       </form>
     </div>
 
-
-
-  </body>
-</html>
+<%- include("footer") -%>
