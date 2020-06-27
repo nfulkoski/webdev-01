@@ -1,0 +1,27 @@
+#Overall
+.env
+.DS_Store
+# Web basics
+/webdev-basics
+#Email signup
+/email-signup/node_modules
+/email-signup/Procfile
+/email-signup/package.json
+/email-signup/package-lock.json
+/email-signup/node_modules
+/email-signup/config.js
+#todolist
+/todolist/node_modules
+/todolist/package.json
+/todolist/package-lock.json
+/todolist/node_modules
+#basic-blog
+/basic-blog/package-lock.json
+/basic-blog/node_modules
+#auth-app
+/auth-app/package-lock.json
+/auth-app/node_modules
+#first-react-app
+/first-react-app/package-lock.json
+/first-react-app/node_modules
+

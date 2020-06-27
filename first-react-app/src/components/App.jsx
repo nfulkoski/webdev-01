@@ -1,13 +1,15 @@
 import React from "react"
 import Header from "./Header"
-import Note from "./Note"
+import Notes from "./Note"
 import Footer from "./Footer"
+
+
 
 function App() {
   return(
     <div>
       <Header />
-      <Note />
+      <Notes />
       <Footer />
     </div>
   )
