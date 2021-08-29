@@ -3,9 +3,12 @@ import  { Route, Switch } from 'react-router-dom';
 
 import './App.css'
 
+import Header from './Components/header.cmp.jsx'
+
 import Home from './Pages/home.cmp.jsx'
 import Shop from './Pages/shop.cmp.jsx'
-import Header from './Components/header.cmp.jsx'
+import Signin from './Pages/signin.cmp.jsx'
+
 
 function App() {
 
@@ -18,12 +21,13 @@ function App() {
       <Switch>
         <Route exact path = '/' component = { Home } />
         <Route path = '/shop' component = { Shop } />
+        <Route path = '/signin' component = { Signin } />
       </Switch>
 
     </div>
 
   );
-  
+
 }
 
 export default App;
