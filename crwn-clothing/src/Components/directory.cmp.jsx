@@ -53,7 +53,7 @@ class Directory extends React.Component {
   render() { return(
 
     <div className = 'directory-menu'>
-    { this.state.sections.map(({id, title, imageUrl, size}) => (<MenuItem key = { id } title = { title } imageUrl = { imageUrl } size = { size }/>)) }
+    { this.state.sections.map(({id, ...otherProps}) => (<MenuItem key = { id } { ...otherProps }/>)) }
     </div>
 
   )}
@@ -61,3 +61,13 @@ class Directory extends React.Component {
 }
 
 export default Directory
+
+
+/*
+Learning
+
+- Notice we're destructuring out now 5 items as sections.map(({id, title, imageUrl, size, linkUrl})
+- ES6 trick: utilise ...propsGroupName such as otherSectionProps
+- It works because the MenuItem parameters have the same name as the array parameters.
+
+*/

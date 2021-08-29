@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import './index.css';
+import App from './App.js';
+
+
+ReactDOM.render(<BrowserRouter> <App /> </BrowserRouter>, document.getElementById('root'));
+
+/*
+Learning
+- Wrapping our app component in BrowserRouter imparts functionality of React Router to the App
+*/
