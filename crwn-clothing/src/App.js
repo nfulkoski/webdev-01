@@ -5,18 +5,25 @@ import './App.css'
 
 import Home from './Pages/home.cmp.jsx'
 import Shop from './Pages/shop.cmp.jsx'
+import Header from './Components/header.cmp.jsx'
 
 function App() {
+
   return (
 
     <div>
+
+      <Header />
+
       <Switch>
-        <Route exact path='/' component = { Home } />
+        <Route exact path = '/' component = { Home } />
         <Route path = '/shop' component = { Shop } />
       </Switch>
+
     </div>
 
   );
+  
 }
 
 export default App;
