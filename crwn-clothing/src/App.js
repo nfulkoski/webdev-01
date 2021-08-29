@@ -1,19 +1,10 @@
 import React from 'react';
-import  { Route, Switch, Link } from 'react-router-dom';
+import  { Route, Switch } from 'react-router-dom';
 
 import './App.css'
 
 import Home from './Pages/home.cmp.jsx'
-
-const HatsPage = ({ history }) => (
-
-  <div>
-    <h1> Hats Page! </h1>
-    <div><Link to = "/"> Home </Link><p/></div>
-    <button onClick = { () => history.push('/')}> Button! </button>
-  </div>
-
-)
+import Shop from './Pages/shop.cmp.jsx'
 
 function App() {
   return (
@@ -21,7 +12,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path='/' component = { Home } />
-        <Route path='/shop/hats' component = { HatsPage } />
+        <Route path = '/shop' component = { Shop } />
       </Switch>
     </div>
 
