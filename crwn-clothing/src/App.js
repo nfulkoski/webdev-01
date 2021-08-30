@@ -9,14 +9,51 @@ import Home from './Pages/home.cmp.jsx'
 import Shop from './Pages/shop.cmp.jsx'
 import Signin from './Pages/signin.cmp.jsx'
 
+import { auth } from './Firebase/firebase.utils'
 
-function App() {
 
+class App extends React.Component {
+
+constructor() {
+
+  super();
+
+  this.state = {
+
+    currentUser: null
+
+  }
+
+}
+
+unsubscribeFromAuth = null
+
+
+componentDidMount() {
+
+  this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+
+    this.setState({ currentUser: user})
+
+    console.log(user)
+
+  });
+
+}
+
+componentWillUnmount() {
+
+  this.unsubscribeFromAuth();
+
+}
+
+
+render() {
   return (
 
     <div>
 
-      <Header />
+      <Header currentUser = { this.state.currentUser } />
 
       <Switch>
         <Route exact path = '/' component = { Home } />
@@ -27,6 +64,8 @@ function App() {
     </div>
 
   );
+
+}
 
 }
 
@@ -54,5 +93,9 @@ Learning
 
 - Re-routing via a function e.g. activating an event such as button.onClick utilises props.history.push('link')
 - Button re-routing example is: <button onClick = { () => history.push('/')}> Button! </button>
+
+Firebase implementation
+- In App.js we add auth functionality such that the app listens for auth state changes
+- this needs to occur via a function set up in componentDidMount and to prevent memory leaks also in componentWillUnmount
 
 */
