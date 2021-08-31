@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
 import { auth } from '../Firebase/firebase.utils.js'
 
 import './header.styles.scss'
@@ -35,4 +37,20 @@ const Header = ({ currentUser }) => (
 
 )
 
-export default Header;
+const mapStateToProps = state => ({
+
+  currentUser: state.user.currentUser
+
+});
+
+export default connect(mapStateToProps)(Header);
+
+/*
+Learning
+
+- state in const mapStateToProps is the rootReducer established via redux
+- state in this case opens user in rootReducer which points to userReducer
+- there we find currentUser
+
+
+*/
