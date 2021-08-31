@@ -1,5 +1,6 @@
 import React from 'react';
 import  { Route, Switch } from 'react-router-dom';
+import { onSnapshot } from 'firebase/firestore'
 
 import './App.css'
 
@@ -7,9 +8,9 @@ import Header from './Components/header.cmp.jsx'
 
 import Home from './Pages/home.cmp.jsx'
 import Shop from './Pages/shop.cmp.jsx'
-import Signin from './Pages/signin.cmp.jsx'
+import Authpage from './Pages/authpage.cmp.jsx'
 
-import { auth } from './Firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './Firebase/firebase.utils'
 
 
 class App extends React.Component {
@@ -31,11 +32,40 @@ unsubscribeFromAuth = null
 
 componentDidMount() {
 
-  this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+  this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 
-    this.setState({ currentUser: user})
+    if(userAuth) {
 
-    console.log(user)
+      const userRef = await createUserProfileDocument(userAuth);
+
+      onSnapshot(userRef, (snap) => {
+
+        console.log(snap.data());
+
+        this.setState({
+
+          currentUser: {
+
+            id: snap.id,
+            ...snap.data()
+
+          }
+
+        }, () => { console.log(this.state) });
+
+      });
+
+
+
+    } else {
+
+      this.setState({ currentUser: userAuth})
+
+    }
+
+    /*this.setState({ currentUser: user})
+
+    console.log(user)*/
 
   });
 
@@ -58,7 +88,7 @@ render() {
       <Switch>
         <Route exact path = '/' component = { Home } />
         <Route path = '/shop' component = { Shop } />
-        <Route path = '/signin' component = { Signin } />
+        <Route path = '/signin' component = { Authpage } />
       </Switch>
 
     </div>
@@ -97,5 +127,13 @@ Learning
 Firebase implementation
 - In App.js we add auth functionality such that the app listens for auth state changes
 - this needs to occur via a function set up in componentDidMount and to prevent memory leaks also in componentWillUnmount
+
+
+setState is asynchronous
+- this.setstate(state) followed by console.log(this.state) will report state prior e.g. state undefined
+- use this.setstate(state, then) where then is a fx: this.setState(state, () => { console.log(this.state)})
+
+unsubscribeFromAuth
+- notice the listener is set up in componentDidMount but the function itself is called in componentWillUnmount
 
 */
