@@ -13,7 +13,7 @@ import Authpage from './Pages/authpage.cmp.jsx'
 import { auth, createUserProfileDocument } from './Firebase/firebase.utils'
 
 import { connect } from 'react-redux'
-import { setCurrentUser } from './Redux/user-actions.js'
+import { setCurrentUser } from './Redux/user/user-actions.js'
 
 
 class App extends React.Component {

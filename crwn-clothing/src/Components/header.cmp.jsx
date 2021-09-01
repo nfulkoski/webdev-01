@@ -7,8 +7,10 @@ import { auth } from '../Firebase/firebase.utils.js'
 import './header.styles.scss'
 
 import { ReactComponent as Logo } from '../Assets/crown.svg'
+import CartIcon from './cart-icon.cmp.jsx'
+import CartDropdown from './cart-dropdown.cmp.jsx'
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
 
   <div className = 'header'>
 
@@ -26,20 +28,23 @@ const Header = ({ currentUser }) => (
 
     {
     currentUser ?
-      <div className = 'option' onClick = {() => auth.signOut() }> Sign out </div>
+      (<div className = 'option' onClick = {() => auth.signOut() }> Sign out </div>)
       :
-      <Link className = 'option' to = '/signin'> Sign in </Link>
+      (<Link className = 'option' to = '/signin'> Sign in </Link>)
     }
-
+    <CartIcon />
     </div>
-
+    {
+      hidden ? null : (<CartDropdown />)
+    }
   </div>
 
 )
 
-const mapStateToProps = state => ({
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden }}) => ({
 
-  currentUser: state.user.currentUser
+  currentUser,
+  hidden
 
 });
 

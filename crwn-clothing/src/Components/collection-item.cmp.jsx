@@ -1,29 +1,46 @@
 import React from 'react';
 
+import { connect } from 'react-redux'
+import { addItem } from '../Redux/cart/cart-actions.js'
+
 import './collection-item.styles.scss'
 
-const CollectionItem = ({ imageUrl, name, price }) => (
+import FormButton from './form-button.cmp.jsx'
 
-  <div className = 'collection-item'>
+const CollectionItem = ({ item, addItem }) => {
 
-    <div className = 'image'
-         style = {{
+const { imageUrl, name, price } = item;
 
-           backgroundImage: `url(${imageUrl})`
+  return (
+      <div className = 'collection-item'>
 
-         }}
+        <div className = 'image'
+             style = {{
 
-    />
+               backgroundImage: `url(${imageUrl})`
 
-    <div className = 'collection-footer'>
+             }}
 
-        <span className = 'name'> { name } </span>
-        <span className = 'price'> { price } </span>
+        />
 
-    </div>
+        <div className = 'collection-footer'>
 
-  </div>
+            <span className = 'name'> { name } </span>
+            <span className = 'price'> { price } </span>
 
-)
+        </div>
 
-export default CollectionItem;
+        <FormButton className = 'form-button' inverted onClick = { () => addItem(item) }> ADD TO CART </FormButton>
+
+      </div>
+  )
+
+}
+
+const mapDispatchToProps = dispatch => ({
+
+  addItem: item => dispatch(addItem(item))
+
+});
+
+export default connect(null, mapDispatchToProps)(CollectionItem);
