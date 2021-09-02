@@ -10,6 +10,7 @@ import Header from './Components/header.cmp.jsx'
 import Home from './Pages/home.cmp.jsx'
 import Shop from './Pages/shop.cmp.jsx'
 import Authpage from './Pages/authpage.cmp.jsx'
+import Checkout from './Pages/checkout.cmp.jsx'
 
 import { auth, createUserProfileDocument } from './Firebase/firebase.utils'
 
@@ -75,6 +76,7 @@ render() {
           <Route exact path = '/' component = { Home } />
           <Route path = '/shop' component = { Shop } />
           <Route exact path = '/signin' render = {() => this.props.currentUser ? (<Redirect to = '/' />) : (<Authpage />)} />
+          <Route exact path = '/checkout' component = { Checkout } />
         </Switch>
 
       </div>
